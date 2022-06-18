@@ -18,6 +18,20 @@ contract FlashloanUser is IFlashloanUser {
             amount,
             token,
             bytes('')
-        )
+        );
     }
+
+    function flashloanCallback(
+        uint amount,
+        address token,
+        bytes memory data
+        )
+        override
+        external
+        {
+            //Do profitable stuff
+
+            //Reimbursed tokens
+            IERC20(token).transfer(msg.sender, amount);
+        }
 }

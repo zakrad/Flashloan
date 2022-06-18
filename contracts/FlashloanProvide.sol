@@ -4,7 +4,7 @@ import '@openzeppelin/contracts/token/ERC20/IERC20.sol';
 import '@openzeppelin/contracts/utils/ReentrancyGaurd.sol';
 import './IFlashloanUser.sol';
 
-contract FlashloadProvider {
+contract FlashloadProvider is ReentrancyGaurd {
     mapping(address => IERC20) public tokens;
 
     constructor(address[] memory _tokens)  {
@@ -19,6 +19,7 @@ contract FlashloadProvider {
         address _token,
         bytes memoty data,
     )
+    nonReentrant
     external
     {
         IERC20 token = tokens[_token];
