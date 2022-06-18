@@ -1,10 +1,10 @@
 pragma solidity 0.8.8;
 
 import '@openzeppelin/contracts/token/ERC20/IERC20.sol';
-import '@openzeppelin/contracts/utils/ReentrancyGaurd.sol';
+import '@openzeppelin/contracts/security/ReentrancyGuard.sol';
 import './IFlashloanUser.sol';
 
-contract FlashloadProvider is ReentrancyGaurd {
+contract FlashloanProvider is ReentrancyGuard {
     mapping(address => IERC20) public tokens;
 
     constructor(address[] memory _tokens)  {
@@ -17,7 +17,7 @@ contract FlashloadProvider is ReentrancyGaurd {
         address callback,
         uint amount,
         address _token,
-        bytes memoty data,
+        bytes memory data
     )
     nonReentrant
     external
